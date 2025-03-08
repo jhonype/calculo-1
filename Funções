@@ -102,3 +102,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# Precisamos configurar para numeros maiores e tambem o programa não fechar logo no inicio
