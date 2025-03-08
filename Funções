@@ -1,0 +1,104 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def funcao_linear():
+    print("Você escolheu a função linear: f(x) = ax + b")
+    a = float(input("Digite o valor de 'a' (coeficiente angular): "))
+    b = float(input("Digite o valor de 'b' (coeficiente linear): "))
+    
+    # Determinando se a reta é crescente ou decrescente
+    if a > 0:
+        print("A reta é crescente.")
+    elif a < 0:
+        print("A reta é decrescente.")
+    else:
+        print("A reta é uma linha horizontal.")
+
+    # Onde a reta cruza o eixo Y (quando x = 0)
+    cruzamento_y = b
+    print(f"A reta cruza o eixo Y em: (0, {cruzamento_y})")
+    
+    # Onde a reta cruza o eixo X (quando f(x) = 0)
+    if a != 0:
+        cruzamento_x = -b / a
+        print(f"A reta cruza o eixo X em: ({cruzamento_x}, 0)")
+    else:
+        print("A reta não cruza o eixo X porque é uma linha horizontal.")
+
+    # Gerando o gráfico
+    x = np.linspace(-10, 10, 400)
+    y = a * x + b
+    plt.plot(x, y, label=f'f(x) = {a}x + {b}')
+    plt.axhline(0, color='black',linewidth=1)
+    plt.axvline(0, color='black',linewidth=1)
+    plt.title(f'Gráfico de f(x) = {a}x + {b}')
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def funcao_quadratica():
+    print("Você escolheu a função quadrática: f(x) = ax^2 + bx + c")
+    a = float(input("Digite o valor de 'a' (coeficiente de x^2): "))
+    b = float(input("Digite o valor de 'b' (coeficiente de x): "))
+    c = float(input("Digite o valor de 'c' (termo constante): "))
+    
+    # Concavidade
+    if a > 0:
+        print("A parábola tem concavidade voltada para cima.")
+    elif a < 0:
+        print("A parábola tem concavidade voltada para baixo.")
+    else:
+        print("Não é uma parábola, é uma reta.")
+    
+    # Onde a parábola cruza o eixo Y (quando x = 0)
+    cruzamento_y = c
+    print(f"A parábola cruza o eixo Y em: (0, {cruzamento_y})")
+    
+    # Onde a parábola cruza o eixo X (quando f(x) = 0), ou seja, raízes
+    delta = b**2 - 4*a*c
+    if delta > 0:
+        x1 = (-b + np.sqrt(delta)) / (2 * a)
+        x2 = (-b - np.sqrt(delta)) / (2 * a)
+        print(f"A parábola cruza o eixo X nos pontos: ({x1}, 0) e ({x2}, 0)")
+    elif delta == 0:
+        x1 = -b / (2 * a)
+        print(f"A parábola cruza o eixo X no ponto: ({x1}, 0)")
+    else:
+        print("A parábola não cruza o eixo X (não possui raízes reais).")
+    
+    # Vértice
+    x_vertice = -b / (2 * a)
+    y_vertice = a * x_vertice**2 + b * x_vertice + c
+    print(f"O vértice da parábola está em: ({x_vertice}, {y_vertice})")
+
+    # Gerando o gráfico
+    x = np.linspace(-10, 10, 400)
+    y = a * x**2 + b * x + c
+    plt.plot(x, y, label=f'f(x) = {a}x^2 + {b}x + {c}')
+    plt.axhline(0, color='black',linewidth=1)
+    plt.axvline(0, color='black',linewidth=1)
+    plt.title(f'Gráfico de f(x) = {a}x^2 + {b}x + {c}')
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def main():
+    print("Escolha uma opção:")
+    print("1 - Função Linear")
+    print("2 - Função Quadrática")
+    
+    escolha = int(input("Digite o número da opção: "))
+    
+    if escolha == 1:
+        funcao_linear()
+    elif escolha == 2:
+        funcao_quadratica()
+    else:
+        print("Opção inválida!")
+
+if __name__ == "__main__":
+    main()
